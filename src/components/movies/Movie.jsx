@@ -1,15 +1,59 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import ErrorMessage from "../errors/ErrorMessage.css";
+import "./Movie.css";
 
-import "./movies/Movie.css";
+function Movie() {
+    const [movie, setMovie] = useState({});
+    const [loadingError, setLoadingError] = useState(false);
 
-import ErrorMessage from "../errors/ErrorMessage";
+    const { id } = useParams();
+    const navigate = useNavigate();
 
-function Movie() {}
+    // Add your handleDelete function here
 
-const [movie, setMovie] = useState({});
-const [loadingError, setLoadingError] = useState(false);
+    return (
+        <section className="Movies-movie-wrapper">
+            <h2>{movie.title}</h2>
+            <section className="Movies-movie">
+                {loadingError ? (
+                    <ErrorMessage />
+                ) : (
 
-const { id } = useParams();
-const navigate = useNavigate();
+                    <aside>
+                        <p>
+                            <span>Duration:</span> {movie.duration}
+                        </p>
+                        <p>
+                            <span>Listed Categories:</span> {movie.listedIn}
+                        </p>
+                        <p>
+                            <span>Country:</span> {movie.country}
+                        </p>
+                        <p>
+                            <span>Rating:</span> {movie.rating}
+                        </p>
+                        <p>
+                            <span>Date Added:</span> {movie.dateAdded}
+                        </p>
+
+                        <article>
+                            <p>{movie.description}</p>
+                        </article>
+
+
+
+                        <button className="delete" onClick={() => handleDelete(movie.id)}>
+                            Remove Movie
+                        </button>
+                        <Link to={`/movies/${id}/edit`}>
+                            <button>Edit</button>
+                        </Link>
+                    </aside>
+                )}
+            </section>
+        </section>
+    );
+}
+
 export default Movie;

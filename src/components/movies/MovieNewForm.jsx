@@ -1,11 +1,11 @@
 import { useState } from "react";
-import "./MoviesForm.css";
+import "./MovieNewForm.css";
 
 export default function MovieNewForm() {
   const [movie, setMovie] = useState({
-	id: "",  
-	type: "",
-	  title: "",
+    id: "",
+    type: "",
+    title: "",
     country: "",
     dateAdded: "",
     releaseYear: "",
@@ -15,9 +15,7 @@ export default function MovieNewForm() {
     description: "",
   });
 
-  function handleSubmit(event) {
-    
-  }
+  function handleSubmit(event) {}
 
   function handleTextChange(event) {
     setMovie({
